@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 export default function AddJobPage() {
   const [formData, setFormData] = useState({
@@ -38,7 +40,7 @@ export default function AddJobPage() {
     e.preventDefault();
     if (!validate()) return;
 
-    await fetch("http://localhost:5000/api/jobs", {
+    await fetch(`${apiUrl}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData)

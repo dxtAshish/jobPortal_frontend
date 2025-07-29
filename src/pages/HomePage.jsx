@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./styles.css";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function HomePage() {
   const [jobs, setJobs] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
   const [searchLocation, setSearchLocation] = useState("");
+console.log(apiUrl, "apiUrl from env");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/jobs")
+    fetch(`${apiUrl}`)
       .then(res => res.json())
       .then(data => setJobs(data));
   }, []);
@@ -18,7 +20,7 @@ export default function HomePage() {
     if (searchTitle) params.append("title", searchTitle);
     if (searchLocation) params.append("location", searchLocation);
 
-    fetch(`http://localhost:5000/api/jobs?${params.toString()}`)
+    fetch(`${apiUrl}?${params.toString()}`)
       .then(res => res.json())
       .then(data => setJobs(data))
       .catch(err => console.error("Search error:", err));
