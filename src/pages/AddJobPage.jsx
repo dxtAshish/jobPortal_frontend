@@ -16,7 +16,7 @@ export default function AddJobPage() {
 
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: "" }); // clear error on change
+    setErrors({ ...errors, [e.target.name]: "" }); 
   };
 
   const validate = () => {
